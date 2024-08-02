@@ -80,6 +80,8 @@ spec:
                   name: {{ include "graphprotocol-node.fullname" . }}
                   key: pgPass
                 {{- end }}
+            - name: GRAPH_GETH_ETH_CALL_ERRORS
+              value: "evm error"
           ports:
             - name: metrics
               containerPort: 8040
