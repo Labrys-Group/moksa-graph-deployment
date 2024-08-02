@@ -2,7 +2,7 @@
 email: aidan@labrys.io
 
 postgresDatasource:
-  url: postgres-postgres.graph:5432 # Postgres host, format postgres-postgres.<graph-node namespace>:5432
+  url: postgres-postgres.graph-node:5432 # Postgres host, format postgres-postgres.<graph-node namespace>:5432
   user: node
   db: node
   password: # Known only after graph node installation, skip this value on first install
