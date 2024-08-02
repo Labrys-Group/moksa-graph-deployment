@@ -26,7 +26,7 @@ releases:
 
 - name: postgres-operator
   chart: postgres-operator/postgres-operator
-  version: ~1.9.0
+  version: ~1.12.2
   # Fixes CRD installation
   disableValidationOnInstall: true
   values:
@@ -62,7 +62,7 @@ releases:
 
 - name: prometheus-stack
   chart: prometheus-community/kube-prometheus-stack
-  version: ~17.0.3
+  version: ~61.6.1
   # Fixes CRD installation
   disableValidationOnInstall: true
   values:
