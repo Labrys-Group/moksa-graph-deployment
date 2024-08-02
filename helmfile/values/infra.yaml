@@ -21,6 +21,6 @@ kubernetesDashboard:
 kubernetesDashboardSA:
   enabled: false
 prometheusStack:
-  enabled: false
+  enabled: true
 graphGrafanaDashboards:
-  enabled: false
+  enabled: true
