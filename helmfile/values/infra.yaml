@@ -17,9 +17,9 @@ certManager:
 letsencryptProdIssuer:
   enabled: false
 kubernetesDashboard:
-  enabled: false
+  enabled: true
 kubernetesDashboardSA:
-  enabled: false
+  enabled: true
 prometheusStack:
   enabled: true
 graphGrafanaDashboards:
