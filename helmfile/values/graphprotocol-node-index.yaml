@@ -8,7 +8,7 @@ config:
     glue:
       providers:
       - label: glue
-        url: https://testnet-ws-1.server-1.glue.net
+        url: https://mainnet-ws.m9.glue.net
         features: [ archive ]
 
 postgres:

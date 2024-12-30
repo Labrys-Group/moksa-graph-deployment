@@ -9,4 +9,4 @@ resources:
 numberOfInstances: 2
 
 volume:
-  size: 50Gi
+  size: 100Gi

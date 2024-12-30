@@ -7,7 +7,7 @@ config:
     glue:
       providers:
       - label: glue
-        url: https://testnet-ws-1.server-1.glue.net
+        url: https://mainnet-ws.m9.glue.net
         features: [ archive ]
 
 postgres:
@@ -25,11 +25,11 @@ replicaCount: 2
 
 resources:
   requests:
-    cpu: 50m
-    memory: 100Mi
-  limits:
     cpu: 100m
     memory: 200Mi
+  limits:
+    cpu: 200m
+    memory: 400Mi
 
 role: "query-node"
 
@@ -40,10 +40,10 @@ monitoring:
 ingress:
   enabled: true
   hosts:
-  - graph.testnet.dev.gke.glue.net
+  - graph.mainnet.prod.gke.glue.net
   tls:
   - hosts:
-    - graph.testnet.dev.gke.glue.net
+    - graph.mainnet.prod.gke.glue.net
     secretName: query-node-https
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
