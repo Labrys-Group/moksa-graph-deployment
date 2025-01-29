@@ -2,8 +2,8 @@
 
 The Graph protocol indexer can be installed in two different modes:
 
-* Network mode — the node participates in the network, processes external requests and gets commission.
-* Standalone mode — the node doesn't join in The Graph network, processes only your own subgraph and requests.
+- Network mode — the node participates in the network, processes external requests and gets commission.
+- Standalone mode — the node doesn't join in The Graph network, processes only your own subgraph and requests.
 
 ## Prerequisites
 
@@ -96,6 +96,9 @@ When the subgraph is deployed, you can kill the port-forwarding processes by `Ct
 kubectl -n <namespace> port-forward svc/ipfs-ipfs 5001:5001 & \
 kubectl -n <namespace> port-forward svc/graphprotocol-node-index 8020:8020
 ```
+
+kubectl -n mandala-graph-deploy port-forward svc/ipfs-ipfs 5001:5001 & \
+kubectl -n mandala-graph-deploy port-forward svc/graphprotocol-node-index 8020:8020
 
 #### Deploy the example subgraph
 
@@ -267,4 +270,4 @@ this means there are configuration errors.
 
 Possible causes:
 
-* Missing the `config.chains` value in the `values/graphprotocol-node*` file.
+- Missing the `config.chains` value in the `values/graphprotocol-node*` file.
