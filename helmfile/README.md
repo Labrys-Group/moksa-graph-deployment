@@ -2,8 +2,8 @@
 
 The Graph protocol indexer can be installed in two different modes:
 
-* Network mode — the node participates in the network, processes external requests and gets commission.
-* Standalone mode — the node doesn't join in The Graph network, processes only your own subgraph and requests.
+- Network mode — the node participates in the network, processes external requests and gets commission.
+- Standalone mode — the node doesn't join in The Graph network, processes only your own subgraph and requests.
 
 ## Prerequisites
 
@@ -23,10 +23,10 @@ For more information about indexing, see [The Graph Indexer](https://thegraph.co
 
 ### Installation
 
-Prepare the values in the `values` directory first. The `<namespace>` value can be any string of your choice.
+Prepare the values in the `values` directory first. The `mandala-graph-deploy` value can be any string of your choice.
 
 ```
-helmfile -f helmfile.yaml -e network -n <namespace> apply
+helmfile -f helmfile.yaml -e network -n mandala-graph-deploy apply
 ```
 
 ### Install graph-cli and indexer-cli
@@ -36,7 +36,7 @@ Install graph-cli and indexer-cli by following [Getting started: from NPM packag
 ### Check the indexer status
 
 ```
-kubectl -n <namespace> port-forward svc/graphprotocol-indexer-agent 18000:8000
+kubectl -n mandala-graph-deploy port-forward svc/graphprotocol-indexer-agent 18000:8000
 graph indexer status
 ```
 
@@ -45,7 +45,7 @@ graph indexer status
 First, you must run the port-forward command:
 
 ```
-kubectl -n <namespace> port-forward svc/graphprotocol-indexer-agent 18000:8000
+kubectl -n mandala-graph-deploy port-forward svc/graphprotocol-indexer-agent 18000:8000
 ```
 
 Then, connect with graph-cli and check the status:
@@ -63,12 +63,12 @@ You can deploy The Graph nodes in the standalone mode. In this case, a separate 
 
 ### Installation
 
-Prepare the values in the `values` directory first. The `<namespace>` value can be any string of your choice.
+Prepare the values in the `values` directory first. The `mandala-graph-deploy` value can be any string of your choice.
 
 In the example below, an external Ethereum mainnet endpoint is used to index the contract deplopyed to the Ethereum mainnet.
 
 ```
-helmfile -f helmfile.yaml -e standalone -n <namespace> apply
+helmfile -f helmfile.yaml -e standalone -n mandala-graph-deploy apply
 ```
 
 ### Deploy the subgraph
@@ -93,9 +93,12 @@ You must run the following commands to access the deployed components locally.
 When the subgraph is deployed, you can kill the port-forwarding processes by `Ctrl+C`.
 
 ```
-kubectl -n <namespace> port-forward svc/ipfs-ipfs 5001:5001 & \
-kubectl -n <namespace> port-forward svc/graphprotocol-node-index 8020:8020
+kubectl -n mandala-graph-deploy port-forward svc/ipfs-ipfs 5001:5001 & \
+kubectl -n mandala-graph-deploy port-forward svc/graphprotocol-node-index 8020:8020
 ```
+
+kubectl -n mandala-graph-deploy port-forward svc/ipfs-ipfs 5001:5001 & \
+kubectl -n mandala-graph-deploy port-forward svc/graphprotocol-node-index 8020:8020
 
 #### Deploy the example subgraph
 
@@ -125,7 +128,7 @@ This guide uses the metrics endpoint to watch the indexing progress.
 Port-forward metrics port (used only for tracking the indexing):
 
 ```
-kubectl -n <namespace> port-forward svc/graphprotocol-node-index 8040:8040
+kubectl -n mandala-graph-deploy port-forward svc/graphprotocol-node-index 8040:8040
 ```
 
 You can get the information about the number of the latest block indexed by a subgraph by running the following command:
@@ -147,7 +150,7 @@ A fully synced subgraph has `deployment_head` equal to `ethereum_chain_head_numb
 Port-forward the GraphQL ports (HTTP and WS) to your local machine:
 
 ```
-kubectl -n <namespace> port-forward svc/graphprotocol-node-query 8000:8000
+kubectl -n mandala-graph-deploy port-forward svc/graphprotocol-node-query 8000:8000
 ```
 
 **Note:** the GraphQL WebSocket is exposed on a separate 8001 port.
@@ -188,17 +191,17 @@ This will expose the ports used by The Graph protocol node to the web.
 Do note you will need to run the below commands for the changes to be reflected.
 
 ```
-helmfile -f helmfile-standalone.yaml -n <namespace> apply
+helmfile -f helmfile-standalone.yaml -n mandala-graph-deploy apply
 
 or
 
-helmfile -f helmfile-network.yaml -n <namespace> apply
+helmfile -f helmfile-network.yaml -n mandala-graph-deploy apply
 ```
 
 Once the changes are applied, get the external IP for the ingress query.
 
 ```
-$ kubectl get ing -n <namespace>
+$ kubectl get ing -n mandala-graph-deploy
 ```
 
 #### Loadbalancer service
@@ -216,17 +219,17 @@ This will expose the ports used by The Graph protocol node to the web.
 Do note you will need to run the below commands for the changes to be reflected.
 
 ```
-helmfile -f helmfile.yaml -e standalone -n <namespace> apply
+helmfile -f helmfile.yaml -e standalone -n mandala-graph-deploy apply
 
 or
 
-helmfile -f helmfile.yaml -e network -n <namespace> apply
+helmfile -f helmfile.yaml -e network -n mandala-graph-deploy apply
 ```
 
 Once the changes are applied, get the external IP for the query service.
 
 ```
-$ kubectl get svc -n <namespace>
+$ kubectl get svc -n mandala-graph-deploy
 NAME                           TYPE           CLUSTER-IP      EXTERNAL-IP                               PORT(S)                                                       AGE
 graphprotocol-node-index       ClusterIP      some ip         <none>                                    8040/TCP,8020/TCP,8000/TCP,8001/TCP,8030/TCP                  64m
 graphprotocol-node-query       LoadBalancer   some ip         *Service external address (CNAME or IP)*  8040:31563/TCP,8020:32350/TCP,8000:30795/TCP,8001:31281/TCP   64m
@@ -262,9 +265,9 @@ monitoring:
 
 ### Timeouts and pods experiencing `CrashLoopBackOff`
 
-If you get timeouts or if some pods get the `CrashLoopBackOff` errors when you run `kubectl get pods -n <namespace>`,
+If you get timeouts or if some pods get the `CrashLoopBackOff` errors when you run `kubectl get pods -n mandala-graph-deploy`,
 this means there are configuration errors.
 
 Possible causes:
 
-* Missing the `config.chains` value in the `values/graphprotocol-node*` file.
+- Missing the `config.chains` value in the `values/graphprotocol-node*` file.

@@ -58,6 +58,7 @@ variable "node_pools" {
       auto_repair        = true
       auto_upgrade       = true
       preemptible        = true
+      image_type         = "COS_CONTAINERD"
     }
   ]
 }

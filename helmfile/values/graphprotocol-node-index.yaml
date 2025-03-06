@@ -1,15 +1,14 @@
-
 config:
   # Overriden in helmfile
   # ipfs: https://ipfs.network.thegraph.com
 
   # Configuration of connected blockchain metrics and their providers
   chains:
-    glue:
+    niskala:
       providers:
-      - label: glue
-        url: https://mainnet-ws.m9.glue.net
-        features: [ archive ]
+        - label: niskala
+          url: https://mlg2.mandalachain.io
+          features: [archive]
 
 postgres:
   db: node

@@ -9,13 +9,13 @@ postgresDatasource:
 
 # Enables infra components
 ingressNginx:
-  enabled: false
+  enabled: true
 postgresOperator:
   enabled: true
 certManager:
-  enabled: false
+  enabled: true
 letsencryptProdIssuer:
-  enabled: false
+  enabled: true
 kubernetesDashboard:
   enabled: false
 kubernetesDashboardSA:
